@@ -29,7 +29,6 @@ blocks:
             - make
             - 'gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml'
             - cache store go-mod-v4-$(checksum go.sum) /go/pkg/mod
-            - ./workdir/contacts &
             - sleep 5
             - >-
               curl --retry 10 --retry-delay 1 -X POST --header "Content-Type:
