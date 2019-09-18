@@ -19,6 +19,8 @@ blocks:
         - name: Build Block
           commands:
             - checkout
+            - apt update
+            - apt install lftp
             - mkdir -p $TEST_RESULTS
             - cache restore go-mod-v4-$(checksum go.sum)
             - make
