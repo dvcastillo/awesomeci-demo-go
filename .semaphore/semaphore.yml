@@ -35,6 +35,7 @@ blocks:
               curl --retry 10 --retry-delay 1 -X POST --header "Content-Type:
               application/json" -d '{"email":"test@example.com","name":"Test
               User"}' http://localhost:8080/contacts
+            - artifact push project /tmp/test-results
       env_vars:
         - name: TEST_RESULTS
           value: /tmp/test-results
