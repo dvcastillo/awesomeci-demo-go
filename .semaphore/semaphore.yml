@@ -23,9 +23,20 @@ blocks:
             - sudo apt install lftp -y
             - mkdir -p $TEST_RESULTS
             - cache restore go-mod-v4-$(checksum go.sum)
-            - make
-            - cache store go-mod-v4-$(checksum go.sum) /go/pkg/mod
             - 'dockerize -wait tcp://db:5432 -timeout 1m'
+            - make
+            - >-
+              PACKAGE_NAMES=$(go list ./... | circleci tests split
+              --split-by=timings --timings-type=classname)
+            - >-
+              gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml --
+              $PACKAGE_NAMES
+            - cache store go-mod-v4-$(checksum go.sum) /go/pkg/mod
       env_vars:
         - name: TEST_RESULTS
           value: /tmp/test-results
+        - name: CONTACTS_DB_URL
+          value: >-
+            postgres://circleci-demo-go@localhost:5432/circle_test?sslmode=disable
+        - name: ' CONTACTS_DB_MIGRATIONS'
+          value: /home/circleci/project/db/migrations
