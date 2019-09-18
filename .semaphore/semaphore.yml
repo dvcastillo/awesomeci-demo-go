@@ -23,6 +23,7 @@ blocks:
             - cache restore go-mod-v4-$(checksum go.sum)
             - make
             - cache store go-mod-v4-$(checksum go.sum) /go/pkg/mod
+            - 'dockerize -wait tcp://localhost:5432 -timeout 1m'
       env_vars:
         - name: TEST_RESULTS
           value: /tmp/test-results
