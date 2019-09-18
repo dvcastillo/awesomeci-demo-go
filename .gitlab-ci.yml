@@ -1,0 +1,6 @@
+variables:
+  MESSAGE_TEXT: "Hello World!"
+
+hello-world:
+  script:
+    - echo $MESSAGE_TEXT
