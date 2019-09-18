@@ -6,9 +6,9 @@ agent:
     os_image: ubuntu1804
   containers:
     - name: main
-      image: 'semaphoreci/golang:1.12.9'
+      image: 'circleci/golang:1.12'
     - name: db
-      image: 'postgres:9.6'
+      image: 'circleci/postgres:9.6-alpine'
       env_vars:
         - name: POSTGRES_PASSOWRD
           value: keyboard-cat
@@ -23,7 +23,7 @@ blocks:
             - cache restore go-mod-v4-$(checksum go.sum)
             - make
             - cache store go-mod-v4-$(checksum go.sum) /go/pkg/mod
-            - 'dockerize -wait tcp://localhost:5432 -timeout 1m'
+            - 'dockerize -wait tcp://db:5432 -timeout 1m'
       env_vars:
         - name: TEST_RESULTS
           value: /tmp/test-results
