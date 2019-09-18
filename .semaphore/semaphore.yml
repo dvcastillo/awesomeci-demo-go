@@ -28,6 +28,7 @@ blocks:
             - 'dockerize -wait tcp://db:5432 -timeout 1m'
             - make
             - 'gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml'
+            - pwd
             - cache store go-mod-v4-$(checksum go.sum) /go/pkg/mod
       env_vars:
         - name: TEST_RESULTS
@@ -35,4 +36,4 @@ blocks:
         - name: CONTACTS_DB_URL
           value: 'postgres://awesomeci-demo-go@db:5432/circle_test?sslmode=disable'
         - name: CONTACTS_DB_MIGRATIONS
-          value: /go/awesomeci-demo-go-semaphore/db/migrations
+          value: /awesomeci-demo-go-semaphore/db/migrations
