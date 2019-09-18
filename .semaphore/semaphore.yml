@@ -29,8 +29,8 @@ blocks:
             - make
             - 'gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml'
             - cache store go-mod-v4-$(checksum go.sum) /go/pkg/mod
-            - sleep 5
             - ./workdir/contacts &
+            - sleep 5
             - >-
               curl --retry 10 --retry-delay 1 -X POST --header "Content-Type:
               application/json" -d '{"email":"test@example.com","name":"Test
