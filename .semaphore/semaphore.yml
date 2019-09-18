@@ -25,12 +25,7 @@ blocks:
             - cache restore go-mod-v4-$(checksum go.sum)
             - 'dockerize -wait tcp://db:5432 -timeout 1m'
             - make
-            - >-
-              PACKAGE_NAMES=$(go list ./... | circleci tests split
-              --split-by=timings --timings-type=classname)
-            - >-
-              gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml --
-              $PACKAGE_NAMES
+            - 'gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml'
             - cache store go-mod-v4-$(checksum go.sum) /go/pkg/mod
       env_vars:
         - name: TEST_RESULTS
