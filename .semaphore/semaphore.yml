@@ -21,6 +21,8 @@ blocks:
             - checkout
             - mkdir -p $TEST_RESULTS
             - cache restore go-mod-v4-$(checksum go.sum)
+            - make
+            - cache store go-mod-v4-$(checksum go.sum) ../go/pkg/mod
       env_vars:
         - name: TEST_RESULTS
           value: /tmp/test-results
