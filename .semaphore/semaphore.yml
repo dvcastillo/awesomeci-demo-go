@@ -32,6 +32,6 @@ blocks:
           value: /tmp/test-results
         - name: CONTACTS_DB_URL
           value: >-
-            postgres://circleci-demo-go@localhost:5432/circle_test?sslmode=disable
+            postgres://circleci-demo-go@db:5432/circle_test?sslmode=disable
         - name: ' CONTACTS_DB_MIGRATIONS'
           value: /home/circleci/project/db/migrations
