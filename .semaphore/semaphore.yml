@@ -10,8 +10,10 @@ agent:
     - name: db
       image: 'circleci/postgres:9.6-alpine'
       env_vars:
-        - name: POSTGRES_PASSOWRD
-          value: keyboard-cat
+        - name: POSTGRES_USER
+          value: awesomeci-demo-go
+        - name: POSTGRES_DB
+          value: circle_test
 blocks:
   - name: Build
     task:
@@ -31,7 +33,6 @@ blocks:
         - name: TEST_RESULTS
           value: /tmp/test-results
         - name: CONTACTS_DB_URL
-          value: >-
-            postgres://awesomeci-demo-go@db:5432/circle_test?sslmode=disable
+          value: 'postgres://awesomeci-demo-go@db:5432/circle_test?sslmode=disable'
         - name: ' CONTACTS_DB_MIGRATIONS'
           value: /home/awesomeci/project/db/migrations
