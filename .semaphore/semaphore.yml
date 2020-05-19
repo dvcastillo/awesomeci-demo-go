@@ -30,8 +30,3 @@ blocks:
         - name: Hello World Block
           commands:
             - echo "hello world"
-  - name: 'Block #3'
-    task:
-      jobs:
-        - name: 'Job #1'
-          commands: []
