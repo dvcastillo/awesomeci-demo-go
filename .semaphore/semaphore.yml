@@ -13,20 +13,10 @@ blocks:
       jobs:
         - name: Download our code
           commands:
-            - echo "Hello from Semaphore!"
-            - echo $APP_ENV
-            - checkout
-            - ls -alh
-  - name: 'Block #2'
+            - echo "world 2"
+  - name: Something special
     task:
-      agent:
-        machine:
-          type: e1-standard-2
-          os_image: ubuntu1804
-        containers:
-          - name: main
-            image: 'semaphoreci/ubuntu:18.04'
       jobs:
-        - name: Hello World Block
+        - name: calc
           commands:
-            - echo "hello world"
+            - 'echo $[1 + 2]'
